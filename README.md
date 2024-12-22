@@ -10,7 +10,10 @@ Index:
 1. [intro](#1)
 2. [dintro](#2)
 
-
+<details>
+<summary>Extra</summary>
+Als je javascript gaat gebruiken, installeer dan de Quokka plugin. Deze laat meteen zien wat de javascript code doet en of er dus errors zijn. Let op! Je moet deze elke keer herstarten als je het project heb afgesloten.
+</details>
 
 ## 01-pure-react
 
@@ -37,7 +40,7 @@ Als je geen variabelen wilt aanmaken met we wel een array met de informatie van 
 Als je nog meer items in je object hebt staan die minder belangrijk zijn kun die alsnog opslaan door middel van *Rest*. Dat zier er zo uit:
 `const [primaryGenre, secundaryGenre, ...otherGenres] = genres;` Hier maakt je een soort extra array met `...otherGenres`. Als je het print staat er ook dat het een array met 3 values is. 
 
-```
+```javascript
 <!-- Value 1 -->
     ["primaryGenre"
 <!-- Value 2 -->
@@ -66,7 +69,7 @@ Je kunt met Spread operator ook de value van een array item aanpassen. Je pakt w
 </details>
 
 ### Template literals
-```
+```javascript
 const summary = `${title} a book`;
 ``` 
 De code hierboven is een template. Doormiddel van de **`backticks`** geef je in de javascript aan dat je een variabele mee wilt nemen met tekst. Het is dus letterlijk een template. Hier is de uitkomst dan ook *The Lord Of The Rings is a book*. "The Lord Of The Rings" is hier ingevuld door de variabele. 
@@ -79,13 +82,13 @@ Een zin waar een deel van veranderd kan worden schrijf je met backticks en varia
 
 ### Ternaries indstead of if/else statements
 Ternaries ipv if/else statement is gewoon een verkorting van de if/else statement. 
-```
+```javascript
 const pagesRange = pages > 1000 ? "over a thousand" : "less than a thousand";
 ```
 Hier is de te zien dat er wordt gekeken naar de *pages* en of deze meer (>) zijn dan *1000*. Het *?* geeft aan dat het een ternarie is. Als het antwoord op de vraag *pages > 1000* waar is, dan wordt de eeste string gepakt, *"over a thousand"*. Als het antwoord niet waar is dan wordt het tweede antwoord gepakt, *"less than a thousand"*.
 
 Dit is ook handig om te doen voor in zinnen te verwerken.
-```
+```javascript
 const summary = `${title}, is a book with ${pages} and written by ${author}. Publisched in ${publicationDate.split('-')[0]}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie.`;
 ```
 De hasMovieAdaptation kan er voor zorgen dat er *not* in de zin komt staan wanneer er geen verfilming van het boek is. 
@@ -94,7 +97,7 @@ De hasMovieAdaptation kan er voor zorgen dat er *not* in de zin komt staan wanne
 De nieuwe en snellere manier van het schrijven van en funties is met een arrow functie.
 
 Oude manier:
-```
+```javascript
 funtion getYear(str) {
     return str.split("-")[0];
 }
@@ -102,13 +105,13 @@ console.log(getYear(publicationDate));
 ```
 
 Nieuw manier:
-```
+```javascript
 const getYear = (str) => str.plit(-)[0];
 ```
 De nieuwe manier is korter en je hoeft geen *return* te schrijven.
 
 Als je meerdere lijnen code hebt met je het alsnog met een return functie doen. Met meerdere lijnen code is de **return** een **Must**.
-```
+```javascript
 const getYear = (str) => {
     return str.split("-")[0];
 }
@@ -133,13 +136,13 @@ Deze operator kijkt ook de de *falsy* values; 0, '', null, undifinded.
 De *or* operator (**||**) is het tegenovergestelde van de *and* operatator. Deze kijkt of de eerste value *true* is, stopt de loop en stuurt *true* terug. 
 
 Voorbeeld:
-```
-console.log(true || "some string");      true
-console.log(false || "some string");    "some string"
+```javascript
+console.log(true || "some string");   //true
+console.log(false || "some string");  //"some string"
 
 ```
 
-```
+```javascript
 const spanishTranslation = book.translations.spanish || "not translated";
 spanishTranslation;
 ```
@@ -149,10 +152,187 @@ De code hierboven is om te kijken of er een spaanse vertaling van het boek is. W
 Deze operator werkt eigenlijk hetzelfde als de *or* operator, maar dan allen bij *null* en *undefinded*. Dus niet bij 0 of een lege string ''.
 
 
+### Optional chaining
+Bij optional chaining vraag je aan javascript om alleen te kijken naar de value al het niet *undefined* is. 
+`const librarything = book.reviews.librarything?.reviewsCount;` Het *?* geeft hier aan dat het om optional chaining gaat. 
 
+### The array map method
+Hiermee pak je originele array en past deze aan. Je kunt de originel array dus heel laten en een vervanging maken.
 
+#### map
+Met de .map funtion kun je een bestaande array pakken en die items in een nieuwe array zetten.
+`const x = [1, 2, 3, 4, 5].map((el) => el * 2);`
 
+`const titles = books.map((book) => book.title);`
+Hierboven is te zien dat er een array van *books* wordt opgehaald. Elk item in die array bestaat uit de *title* van een book. De array aan titles wordt als laatste in de *titles* array geplaatst.
 
+```javascript
+const essentialData = books.map((book) => ({
+    title: book.title,
+    author: book.author,
+}));
+```
+Je kunt het natuurlijk ook doen met meerdere attributen. Dat ziet er dan zo uit. En in plaats van het gebruiken van een return, plaats je extra () om hetgenen wat je wil returnen.
+
+#### filter 
+Met deze funtie kun je een array filteren op basis van eigenschappen. 
+
+`const longBooks = books.filter((book) => book.pages > 500);`
+Hier kun je zien dat er gekeken wordt naar het aantal pagina's. Wanneer een boek meer dan 500 pagina's heeft wordt het toegevoegd aan de *longBooks* array.
+
+ ```javascript
+const longBooks = books
+    .filter((book) => book.pages > 500)
+    .filter((book)=> book.hasMovieAdaptation);
+```
+Dit kun je blijven doen door middel van meer *.filter*s neer te zetten.    
+
+`const adventureBooks = books.filter((book) => book.genres.includes('adventure'));`
+Wil je sorteren of een eigenschap er in zit. Dan kan dat door middel van de *.includes()*. Hier kun je in aan geven wat de reden moet zijn.
+
+#### The array reduce method
+Met de *reduce* method kun je de array makkelijk filteren zodat er maar eentje over blijft. 
+
+```javascript
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+```
+Hier is te zien dat je met de *acc* een soort optelsom kunt maken. Dit is niet alleen voor getallen, maar ook voor items in een array.
+
+<details>
+<summary>Uitleg over acc van chatgpt</summary>
+Great! It sounds like you're working with an **accumulator**, which is often used in functions like `reduce()` to accumulate a result based on an array's elements. Let me walk you through the general concept and how it's used in JavaScript.
+
+### What is an Accumulator?
+
+An **accumulator** is a variable that "accumulates" values over iterations, usually inside a loop or a higher-order function like `reduce()`. It is typically used to maintain a running total or combined result as you process each element of an array.
+
+### Using an Accumulator with `reduce()`
+
+The `reduce()` method is a powerful array method in JavaScript that allows you to accumulate a value based on an array's elements. Here's how it works:
+
+```javascript
+const arr = [1, 2, 3, 4, 5];
+
+const sum = arr.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0); // The initial value of the accumulator is 0
+
+console.log(sum); // Outputs: 15
+```
+
+### Explanation:
+- `arr.reduce()` accepts a callback function as the first argument. This callback is called on each element of the array.
+- The callback function has two parameters:
+  1. `accumulator`: This is the value that accumulates the result.
+  2. `currentValue`: This is the current element of the array being processed.
+- The second argument to `reduce()` is the **initial value** of the accumulator (`0` in this case). If not provided, the first element of the array is used as the initial accumulator value.
+  
+### Example Breakdown:
+- On the first call: `accumulator = 0`, `currentValue = 1` → returns `1`.
+- On the second call: `accumulator = 1`, `currentValue = 2` → returns `3`.
+- On the third call: `accumulator = 3`, `currentValue = 3` → returns `6`.
+- On the fourth call: `accumulator = 6`, `currentValue = 4` → returns `10`.
+- On the fifth call: `accumulator = 10`, `currentValue = 5` → returns `15`.
+
+So, by the end of the array, the accumulator holds the sum of all the elements.
+
+### Another Example: Building an Object
+
+You can also use the accumulator to build more complex data structures, such as objects or even arrays.
+
+```javascript
+const arr = ['apple', 'banana', 'orange'];
+
+const fruitObject = arr.reduce((accumulator, currentValue) => {
+  accumulator[currentValue] = currentValue.length;
+  return accumulator;
+}, {}); // Initial value is an empty object
+
+console.log(fruitObject); 
+// Outputs: { apple: 5, banana: 6, orange: 6 }
+```
+
+Here:
+- The accumulator starts as an empty object `{}`.
+- For each fruit in the array, we add a key-value pair to the accumulator, where the key is the fruit name and the value is the length of the fruit name.
+
+### Key Points:
+- The **accumulator** stores the result that is built up over time as `reduce()` iterates through the array.
+- It can be used for many purposes: summing numbers, concatenating strings, building objects, etc.
+- The second argument to `reduce()` provides the starting value for the accumulator (e.g., `0`, `{}`, `[]`, etc.).
+
+If you have a specific example you're struggling with or want further clarification on, feel free to share it, and I'll help guide you through it!
+
+</details>
+
+#### The array sort method
+Het sorteren van een array ook handig zijn. Daar helpt de *.sort* methode mee.
+
+```javascript
+const numbers = [3, 7, 1, 9, 6];
+const sorted = numbers.sort((a, b) => a - b);
+sorted;     //[ 1, 3, 6, 7, 9 ]
+```
+Hier loop javascript door de array heen om te kijken naar de values. *(a, b)* geven aan dat het altijd om de eerste en tweede items gaan. Als er een *negative* terug komt dan worden de cijfers omgedraaid en "gecorteerd". Er wordt namelijk gekeken of *b* van *a* afgehaald kan worden. Als dat niet zo is krijg je een *false* output. 
+
+Het bijzondere van de *.sort* methode is dat de originele array ook aangepast wordt. Het is dus anders dan de vorige methodes. Er wordt geen nieuwe versie gemaakt van de array, maar de array wordt echt aangepast. 
+
+Om dit te verkomen kun je *.slice* toevoegen aan je code.
+```javascript
+const numbers = [3, 7, 1, 9, 6];
+const sorted = numbers.slice().sort((a, b) => a - b);
+sorted;     //[ 1, 3, 6, 7, 9 ]
+numbers:    //[ 3, 7, 6, 7, 9 ]
+```
+
+#### Immutable arrays
+In javascript is het heel belangrijk dat je niet gaat rommelen met bestaande arrays. Daarom moet je weten hoe je items toevoegd, verwijderd en update. 
+
+##### Add
+```javascript
+const newBook = {
+  id: 6,
+  title: "Harry potter aand the chamber of secretes",
+  author: "J. K. Rowling",
+};
+const booksAfterAdd = [...books, newBook];
+```
+
+##### Delete
+```javascript
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+```
+
+##### Update
+```javascript
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? {...book, pages: 1} : book);
+```
+
+#### Asynchronous Javascript: promises
+Met promises maak je eigenlijk een belofte, duhhh. Dit is handig om te gebruiken met bijvoorbeeld een API.
+
+```javascript
+fetch('https://jsonplaceholder.typicode.com/todos')
+  .then(response => response.json())
+  .then(json => console.log(json));
+  ```
+Dit is een voorbeeld van een promise method. Javascript voert deze code ook pas later uit dan de Javascript die in het bestand zelf staan. Om de simpele reden dat het ophalen van een API tijd kost. Meer tijd dan simpele Javascript uitvoeren die al in het bestand staat. 
+
+#### async/await
+Het handige van *async/await* is dat Javascript niet verder gaat met de rest van de code voordat de promise klaar is. 
+
+```Javascript
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+}
+```
+De betere versie ziet er dan op deze manier uit. De *async* geeft aan. 
+De *res = await fetch("")* geeft aan dat de variabele *res* straks de values van de *fetch("")* opslaat. 
+Daarna stop je de *res (response)* in *data* in de vorm van een *.json()* bestand. 
+Als laatste wordt het resultaat laten zien in de console door de variabele *data* te loggen.
 
 
 
