@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Pizza menu - first react project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To start project: open de terminal and type:
 
-## Available Scripts
+```
+npm run start
+```
 
-In the project directory, you can run:
+Basics:
+Aan het begin van dit project beginnen we met het verwijderen van alle bestanden in de _/srs/_ folder.
 
-### `npm start`
+## Creëren
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In _/src/_ maak een nieuwe file, noem deze `index.js`. In dit bestand import je React en ReactDOM:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```javascript
+import React from "react";
+import ReactDOM from "react-dom/client";
+```
 
-### `npm test`
+Hierna maak je de eerste functie van het project.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+function App() {
+  return <h1>Hello react!</h1>;
+}
+```
 
-### `npm run build`
+Hierna moet je react nog vertellen op welke plek in de html je iets wil laten zien. Onder de code hierboven schrijf je dit:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Strictmode
+Strictmode doet eigenlijk niks meer dan je componenten dubbel checken. Errors zouden hiermee kunnen worden opgevangen.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Components
 
-### `npm run eject`
+## Styling
+Wil je styling gaan gebruiken in je project? Dan zijn er meerder opties. De voorkeur gaan uit naar de externe style sheet, ookwel extene css file.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+In dit geval moet je eerst javascript nog vertellen dat je dit bestand wil gaan gebruiken. Dat doe je door het bestand te importeren. Dat doe je als volgt:
+```javascript
+import './index.css'
+```
+Natuurlijk moet je de naar en plek van je file veranderen naar die van jezelf. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Hierna kun je de styling gaan gebruiken. Dit doe je door de `className=''` te gebruiken achter je html elemeneten.
