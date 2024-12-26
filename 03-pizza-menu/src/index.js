@@ -79,11 +79,41 @@ function Menu() {
     return (
         <main className='menu'>
             <h2>Our menu</h2>
-            <Pizza />
-            <Pizza />
-            <Pizza />
-            <Pizza />
+
+            <ul className='pizzas'>
+                {pizzaData.map(pizza => (
+                    <Pizza pizzaObject={pizza} key={pizza.name} />
+                ))}
+            </ul>
+
+            {/* <Pizza
+                name='Pizza Spinaci'
+                ingredients='Tomato, mozarella, spinach and ricotta cheese.'
+                photoName='pizzas/spinaci.jpg'
+                price={10} />
+
+            <Pizza
+                name='Pizza Finghi'
+                ingredients='Tomato, mushrooms'
+                price={12}
+                photoName='pizzas/funghi.jpg'
+            /> */}
         </main>
+    );
+}
+
+function Pizza(props) {
+    console.log(props);
+
+    return (
+        <li className='pizza'>
+            <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+            <div>
+                <h3>{props.pizzaObject.name}</h3>
+                <p>{props.pizzaObject.ingredients}</p>
+                <span>{props.pizzaObject.price}</span>
+            </div>
+        </li>
     );
 }
 
@@ -99,14 +129,4 @@ function Footer() {
     // else alert("Sorry we're closed");
 
     return <footer className='footer'>{new Date().toLocaleTimeString()}. We're currently open!</footer>
-}
-
-function Pizza() {
-    return (
-        <div>
-            <img src='pizzas/spinaci.jpg' alt='Pizza spinaci'></img>
-            <h3>This is a pizza</h3>
-            <p>Tomato, mozarella, spinach and ricotta cheese.</p>
-        </div>
-    );
 }
