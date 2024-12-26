@@ -100,6 +100,24 @@ function Menu() {
   );
 }
 ```
+
 Hier kun je zien dat de child component `<Pizza />` twee keer wordt aangeroepen. Ze hebben allemaal de nodige information mee in de vorm van een prop. Deze informatie kan weer worden uitgesplits door middel van javascript.
 
-Deze manier van werken kan maar een kant op. Alleen de parent component kunnen informatie doorgven aan de child components. De informatie die doorgeven is mag achteraf ook niet worden aangepast. Als dat doet wordt nammelijk het hele object aangepast. 
+Deze manier van werken kan maar een kant op. Alleen de parent component kunnen informatie doorgven aan de child components. De informatie die doorgeven is mag achteraf ook niet worden aangepast. Als dat doet wordt nammelijk het hele object aangepast.
+
+## Conditional rendering
+
+Om te zorgen dat er alleen content op de pagina komt als dat nodig is gebruik je conditional rendering. Er wordt eigenlijk een if/else look gebruikt, maar omdat dat niet mag in jsx doen we het op een andere manier.
+
+```javascript
+const isOpen = 12;
+const isClosed = 22;
+
+{isOpen ? (
+ //html component dat wordt weergegeven als de loop waar is.
+) : (
+  //Html component dat wordt weergegeven als de loop niet waar is.
+)}
+```
+
+Je zet dus alsnog een if/else statement neer, maar dan anders geformateerd.
