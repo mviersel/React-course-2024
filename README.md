@@ -32,8 +32,5 @@ Index:
       - Asynchoronous Javascript promises
       - Async/await
 4. [03 pizza menu](./03-pizza-menu/)
-
-
-<ol>
-   <li>test</li>
-</ol>
+   1. Versie 1
+   2. Versie 2 (Met kennis van de sectie)
