@@ -2,6 +2,39 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
+const skills = [
+    {
+        skill: "HTML+CSS",
+        level: "advanced",
+        color: "#2662EA"
+    },
+    {
+        skill: "JavaScript",
+        level: "advanced",
+        color: "#EFD81D"
+    },
+    {
+        skill: "Web Design",
+        level: "advanced",
+        color: "#C3DCAF"
+    },
+    {
+        skill: "Git and GitHub",
+        level: "intermediate",
+        color: "#E84F33"
+    },
+    {
+        skill: "React",
+        level: "advanced",
+        color: "#60DAFB"
+    },
+    {
+        skill: "Svelte",
+        level: "beginner",
+        color: "#FF3B00"
+    }
+];
+
 function App() {
     return (
         <div className="card">
@@ -34,24 +67,34 @@ function Intro() {
 }
 
 function SkillList() {
-    return <div className="skill-list">
-        <Skill skillName='Html+css' backgroundColor='red' emoji='' />
-        <Skill skillName='Tiny javascript' backgroundColor='yellow' emoji='' />
-        <Skill skillName='React in the making' backgroundColor='blue' emoji='' />
-    </div>
+    const skillItems = skills;
+
+    return (
+        <div className="skill-list">
+            {skillItems.map(skill => (
+                <Skill skillName={skill.skill} backgroundColor={skill.color} level={skill.level} />
+            ))}
+        </div>
+    );
 }
 
-function Skill(props) {
-    return <div className="skill" style={{ backgroundColor: props.backgroundColor }}>
-        <span>{props.skillName}</span>
-        <span>{props.emoji}</span>
+// function Skill(props) {
+//     return <div className="skill" style={{ backgroundColor: props.backgroundColor }}>
+//         <span>{props.skillName}</span>
+//         <span>{props.emoji}</span>
+//     </div>
+// }
+
+function Skill({ skillName, backgroundColor, level }) {
+    return <div className="skill" style={{ backgroundColor: backgroundColor }}>
+        <span>{skillName}</span>
+        <span>
+            {level === 'beginner' && 'BB'}
+            {level === 'intermediate' && 'MonkS'}
+            {level === 'advanced' && 'Chad'}
+        </span>
     </div>
 }
-
-
-
-
-
 
 root.render(
     <StrictMode>

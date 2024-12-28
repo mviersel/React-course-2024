@@ -85,11 +85,16 @@ function Menu() {
             <h2>Our menu</h2>
 
             {numPizzas > 0 ? (
-                <ul className='pizzas'>
-                    {pizzaData.map(pizza => (
-                        <Pizza pizzaObject={pizza} key={pizza.name} />
-                    ))}
-                </ul>) : (
+                <React.Fragment>
+                    <p>Authentic Italian cuising. 6 creative ddishes to choose from. All from our stone oven, all organic, all delicous.</p>
+
+                    <ul className='pizzas'>
+                        {pizzaData.map(pizza => (
+                            <Pizza pizzaObject={pizza} key={pizza.name} />
+                        ))}
+                    </ul>
+                </React.Fragment>
+            ) : (
                 <p>Don't worry, we're working on it.
                 </p>
             )
@@ -112,16 +117,35 @@ function Menu() {
     );
 }
 
-function Pizza(props) {
-    console.log(props);
+// function Pizza(props) {
+//     console.log(props);
+
+//     if (props.pizzaObject.soldOut) return null;
+
+//     return (
+//         <li className='pizza'>
+//             <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+//             <div>
+//                 <h3>{props.pizzaObject.name}</h3>
+//                 <p>{props.pizzaObject.ingredients}</p>
+//                 <span>{props.pizzaObject.price}</span>
+//             </div>
+//         </li>
+//     );
+// }
+
+function Pizza({ pizzaObject }) {
+    console.log(pizzaObject);
+
+    // if (pizzaObject.soldOut) return null;
 
     return (
-        <li className='pizza'>
-            <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+        <li className={`pizza ${pizzaObject.soldOut ? "sold-out" : ""}`}>
+            <img src={pizzaObject.photoName} alt={pizzaObject.name} />
             <div>
-                <h3>{props.pizzaObject.name}</h3>
-                <p>{props.pizzaObject.ingredients}</p>
-                <span>{props.pizzaObject.price}</span>
+                <h3>{pizzaObject.name}</h3>
+                <p>{pizzaObject.ingredients}</p>
+                <span>{pizzaObject.soldOut ? 'Sold out' : pizzaObject.price}</span>
             </div>
         </li>
     );
@@ -135,18 +159,28 @@ function Footer() {
     const isOpen = hour >= openHour && hour <= closeHour;
     console.log(isOpen);
 
+    //Tweede manier van conditional redering
+    // if (!isOpen) return (
+    //     <p>We're not open, sorry.</p>
+    // )
+
     return (
         <footer className='footer'>
             {isOpen ? (
-                <div className='order'>
-                    {isOpen && <p>We're open until {closeHour}:00. Come visit use or order online.</p>}
-                    <button className='btn'>Order</button>
-                </div>
+                <OrderBtn closeHour={closeHour} openHour={openHour} />
             ) : (
                 <p>We're not open, sorry.</p>
-            )}
-        </footer>
+            )
+            }
+        </footer >
     );
+
+    function OrderBtn({ closeHour, openHour }) {
+        return <div className='order'>
+            {isOpen && <p>We're open from {openHour}:00 until {closeHour}:00. Come visit use or order online.</p>}
+            <button className='btn'>Order</button>
+        </div>
+    }
 
     // if (hour >= openHour && hour <= closeHour) alert("We're currenlty open!");
     // else alert("Sorry we're closed");

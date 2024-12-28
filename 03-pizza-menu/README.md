@@ -121,3 +121,104 @@ const isClosed = 22;
 ```
 
 Je zet dus alsnog een if/else statement neer, maar dan anders geformateerd.
+
+Nog een manier om conditional rendering te gebruiken is buitend de jsx. Met die manier gebruik je wel een if statement.
+
+```javascript
+if (!isOpen) return <p>We're not open, sorry.</p>;
+```
+
+Je kunt namelijk gewoon een tweede _return_ meegeven. Hier zet je dan een _if()_ voor. Je moet wel opletten dat de twee returns natuurlijk niet tegelijk mogelijk kunnen zijn.
+
+Nog een voorbeeld. Om te kijken of een item actief/uitverkocht/bestaand is kun je de if gerbruiken.
+
+```javascript
+if (props.pizzaObject.soldOut) return null;
+```
+
+Hier wordt aangegeven dat als het _pizzaObject_ uitverkocht is, laat dan niks zien. Dit kan in de het component zitten zodat wanneer het nodig is het pas gecheckt wordt.
+
+## Component tree
+
+Om nog een keer te laten zien hoe het hele programma in elkaar steeks heb ik een component tree gemaakt.
+
+```
+|── App
+|   |── Header
+|   |── Menu
+|   |   |── Pizza
+|   |── Footer
+|   |   |── OrderBtn
+```
+
+## Prop destructuring
+
+Om te voorkomen dat je steeds _props_ moet schrijven gaan we het anders aanpakken. Je kunt namelijk dezelfde naam als het object meegeven. Die wordt dan automatisch gepakt als _"prop"_.
+
+Voorbeeld:
+
+```javascript
+//Eerder in het programma wordt het component aangeroepen met pizzaObject.
+{pizzaData.map(pizza => (<Pizza pizzaObject={pizza} key={pizza.name} />
+
+//Hier wordt pizzaObject ingvuld en daarom hoeft er geen props meer te staan.
+function PizzaObject({ pizzaObject }) {
+    console.log(pizzaObject);
+
+    if (pizzaObject.soldOut) return null;
+
+    return (
+        <li className='pizza'>
+            <img src={pizzaObject.photoName} alt={pizzaObject.name} />
+            <div>
+                <h3>{pizzaObject.name}</h3>
+                <p>{pizzaObject.ingredients}</p>
+                <span>{pizzaObject.price}</span>
+            </div>
+        </li>
+    );
+}
+```
+
+Omdat je pizzaObject al aan het meegeven bent hoef je die dus niet nog een keer aan te roepen. Op deze manier kun je voorkomend dat extra aan het typen bent terwijl het ook makkelijker kan.
+
+## React fragment
+
+Een React fragment is een encapsulator die eigenlijk niet bestaat. `<></>` Dit is een voorbeeld van een React fragment. Soms moet je er een _Key_ aan toevoegen en dan schijf je het zo `<React.Fragement></React.Fragement>`.
+
+Het nuttige hiervan is dat je geen `<div></div>` hoeft te gebruiken, maar welk meerdere dingen samen als _return_ kunt gebruiken.
+
+Voorbeeld:
+
+```javascript
+ return (
+        <main className='menu'>
+            <h2>Our menu</h2>
+
+            {numPizzas > 0 ? (
+                <React.Fragment>
+                    <p>Authentic Italian cuising. 6 creative ddishes to choose from. All from our stone oven, all organic, all delicous.</p>
+
+                    <ul className='pizzas'>
+                        {pizzaData.map(pizza => (
+                            <Pizza pizzaObject={pizza} key={pizza.name} />
+                        ))}
+                    </ul>
+                </React.Fragment>
+            ) : (
+                <p>Don't worry, we're working on it.
+                </p>
+            )
+```
+
+## Settings classNames en textNames conditionally
+
+Omdat javascript jsx zo goed samenwerken kun je door middel van javascript mode een class naam veranderen.
+
+Voorbeeld:
+
+```javascript
+    <li className={`pizza ${pizzaObject.soldOut ? "sold-out" : ""}`}>
+```
+
+Hier is te zien dat, wanneer in javascript mode, je kunt aangeven wat er moet gebeuren met de className. Standaard krijgt hij de class _pizza_ mee. Als de pizza uitverkocht is, dan wordt _sold-out_ class meegegeven. Is het niet zo dan is de extra class leeg.

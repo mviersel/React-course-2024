@@ -6,7 +6,7 @@ In deze repo komt alles wat ik gemaakt heb tijdens deze [udemy cursus](https://w
 
 Index:
 
-- [Course files](./ultimate-react-course-main-github/)
+- [Course files](https://github.com/jonasschmedtmann/ultimate-react-course)
 
 1. [Challenges](./Challenges/)
    1. [Challenge 01 profile card](./Challenges/challenge-01-profilecard/)

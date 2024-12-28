@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# Challenge 01 - profilecard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In dit project maak ik mijn eerste profilecard met React en een array aan skills.
 
-## Available Scripts
+## Project bekijken
 
-In the project directory, you can run:
+1. Om het project op te starten moet je eers het project downloaden
+2. Open de folder en de terminal van de bijbehorende folder.
+3. In de terminal type:
 
-### `npm start`
+Om React te installeren en het project te kunnen draaien.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```npm
+    npm i
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Om het project vervolgens op te kunnen starten.
 
-### `npm test`
+```npm
+    npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Versie 1
 
-### `npm run build`
+In versie een is het raamwerk van het project opgezet en gevuld met hardcoded informatie.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Avatar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```javascript
+function Avatar() {
+  return (
+    <div>
+      <img className="avatar" src="./profile.png" alt="img" />
+    </div>
+  );
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Intro
 
-### `npm run eject`
+```javascript
+function Intro() {
+  return (
+    <div>
+      <h1>Martijn van Iersel</h1>
+      <p>Dit is een test</p>
+    </div>
+  );
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- SkillList
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```javascript
+function SkillList() {
+  return (
+    <div className="skill-list">
+      <Skill skillName="Html+css" backgroundColor="red" emoji="" />
+      <Skill skillName="Tiny javascript" backgroundColor="yellow" emoji="" />
+      <Skill skillName="React in the making" backgroundColor="blue" emoji="" />
+    </div>
+  );
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Skill
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+function Skill(props) {
+  return (
+    <div className="skill" style={{ backgroundColor: props.backgroundColor }}>
+      <span>{props.skillName}</span>
+      <span>{props.emoji}</span>
+    </div>
+  );
+}
+```
 
-## Learn More
+## verssie 2
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Versie twee is vrijwel hetzelfde als versie 1, maar dan met meer React/Javascript.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Het grootste gedeelte zit in de `SkillList` en `Skill` componenten. Deze zijn herschreven om te laten werken met een array aan skills.
 
-### Code Splitting
+Uitwerkingen:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Skilllist component
 
-### Analyzing the Bundle Size
+```javascript
+function SkillList() {
+  const skillItems = skills;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  return (
+    <div className="skill-list">
+      {skillItems.map((skill) => (
+        <Skill
+          skillName={skill.skill}
+          backgroundColor={skill.color}
+          level={skill.level}
+        />
+      ))}
+    </div>
+  );
+}
+```
 
-### Making a Progressive Web App
+- Skill component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```javascript
+function Skill({ skillName, backgroundColor, level }) {
+  return (
+    <div className="skill" style={{ backgroundColor: backgroundColor }}>
+      <span>{skillName}</span>
+      <span>
+        {level === "beginner" && "BB"}
+        {level === "intermediate" && "MonkS"}
+        {level === "advanced" && "Chad"}
+      </span>
+    </div>
+  );
+}
+```
