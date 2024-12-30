@@ -1,5 +1,7 @@
 <br></br>
 
+<span style="color: #00d8fe">React</span> *Reacts* to state changes by re-rendering the ui
+
 # Udemy - Master modern React
 
 In deze repo komt alles wat ik gemaakt heb tijdens deze [udemy cursus](https://www.udemy.com/course/the-ultimate-react-course/).
@@ -34,3 +36,12 @@ Index:
 4. [03 pizza menu](./03-pizza-menu/)
    1. Versie 1
    2. Versie 2 (Met kennis van de sectie)
+
+
+
+
+
+
+#### Emoji tip
+
+`win + .` opent emoji menu op windows.

@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+<br></br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 04 Steps
 
-## Available Scripts
+In dit project ga ik weer een videos volgen van de course.
 
-In the project directory, you can run:
+## Start-up
 
-### `npm start`
+Zoals de vorige keer begin je met het opschonen van je files. Alles, behalve de `App.js` en `index.js` mag verwijderd worder uit de _src_ folder.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Static jsx - snippets
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```javascript
+<div className={`${step >= 1 ? "active" : ""}`}>1</div>
+```
 
-### `npm test`
+```javascript
+<p className="message">
+  Step {step}: {messages[step - 1]}
+</p>
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+<button style={{ backgroundColor: '#7950f2', color: '#fff' }}>
 
-### `npm run build`
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Handeling events
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Door middel van de _onClick={}_ functie kan javascript gebruik maken van andere functies.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Voorbeeld:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+        <button style={{ backgroundColor: '#7950f2', color: '#fff' }} onClick={handlePrevious}>
+```
 
-## Learn More
+Hier wordt de funtion _hanldePrevious_ aangeroepen.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## State
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+"State is basically data that a component can hold over time." Hiermee wordt dus bedoeld een component zijn eigen data kan vasthouden of onthouden. Het brein van een component.
 
-### Code Splitting
+## Component state
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Single local component variable ("Piece of state", "state veriable")
 
-### Analyzing the Bundle Size
+## Most important part
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Updating the _state_ triggers react to re-render the component. State is basically a tool. The most powerfull tool a react developer has.
 
-### Making a Progressive Web App
+## State veriables met useState
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Wanneer je iets wil gaan bouwen met stappen kun je variable state gebruiken. Voorbeeld:
 
-### Advanced Configuration
+```javascript
+const [step, setStep] = useState(1);
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Het hele ding hiervan is dat je een veriabele hebt, _step_, en een functie om die aan te kunnen passen, _setSetp_.
 
-### Deployment
+Hiervoor moet je wel useState gebruiken (en importeren) anders werkt het niet.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```javascript
+import { useState } from "react";
+```
 
-### `npm run build` fails to minify
+Dit is de basis als je een veriable state wil gaan gebruiken. _"The useState() is a Hook that allows you to have state variables in functional components. so basically useState is the ability to encapsulate local state in a functional component."_
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Let er op dat je nooit die veriable state handmatig aanpast. 1. Dat is bad practice. 2. Je moet het alleen maar doen door middel van de _setFunction_. De veriable wordt beschouwt als een immutable value.
+
+Om er voor te zorgen dat de values altijd up-to-date zijn wil je zo weinig hardcoden. Daarom gebruikt je deze manier om dat te vermijden. Voorbeeld:
+
+```javascript
+const [step, setStep] = useState(1);
+
+setStep((s) => +1);
+```
+
+Hier pak je de functie _setSetp_ die een value mee krijgt, _step_. In de fuctie geeft je _step_ mee als _s_. Die vervolg je met een arrow function en vertel je dat er _+1_ bij moet.
