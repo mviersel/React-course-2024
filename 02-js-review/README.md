@@ -6,8 +6,44 @@ In deze repo komt alles wat ik gemaakt heb tijdens deze [udemy cursus](https://w
 
 Index:
 
-1. [intro](#1)
-2. [dintro](#2)
+- [Udemy - Masster modern React from beginning](#udemy---masster-modern-react-from-beginning)
+  - [01-pure-react](#01-pure-react)
+  - [02-js-review](#02-js-review)
+    - [Javascript deconstructing](#javascript-deconstructing)
+    - [Desctructuring met array's](#desctructuring-met-arrays)
+    - [Rest/spread operator](#restspread-operator)
+      - [Rest operator](#rest-operator)
+      - [Spread operator](#spread-operator)
+    - [Template literals](#template-literals)
+    - [Ternaries indstead of if/else statements](#ternaries-indstead-of-ifelse-statements)
+    - [Arrow functions](#arrow-functions)
+    - [Short-circuiting and logical operators: \&\&, ||, ??](#short-circuiting-and-logical-operators---)
+      - [And \&\&](#and-)
+      - [Or ||](#or-)
+      - [Or ??](#or--1)
+    - [Optional chaining](#optional-chaining)
+    - [The array map method](#the-array-map-method)
+      - [map](#map)
+      - [filter](#filter)
+      - [reduce](#reduce)
+    - [What is an Accumulator?](#what-is-an-accumulator)
+    - [Using an Accumulator with `reduce()`](#using-an-accumulator-with-reduce)
+      - [Explanation:](#explanation)
+      - [Example Breakdown:](#example-breakdown)
+      - [Another Example: Building an Object](#another-example-building-an-object)
+      - [Key Points:](#key-points)
+    - [The array sort method](#the-array-sort-method)
+      - [Immutable arrays](#immutable-arrays)
+        - [Add](#add)
+        - [Delete](#delete)
+        - [Update](#update)
+      - [Asynchronous Javascript: promises](#asynchronous-javascript-promises)
+      - [async/await](#asyncawait)
+  - [03-pizza-menu](#03-pizza-menu)
+    - [Rendering](#rendering)
+    - [webserver starten](#webserver-starten)
+    - [Inhoud aanpassen](#inhoud-aanpassen)
+  - [04-fundamentals](#04-fundamentals)
 
 <details>
 <summary>Extra</summary>
@@ -136,7 +172,7 @@ const getYear = (str) => {
 
 ### Short-circuiting and logical operators: &&, ||, ??
 
-#### &&
+#### And &&
 
 De _and_ (**&&**) operator kijkt naar de eerste value. Als deze _true_ is dan gaat er pas gekeken worden naar de tweede value. Als de eerste value false is, dan stop ie meteen en is de value _false_.
 
@@ -151,7 +187,7 @@ console.log(0 && 'some string');         fasle
 
 Deze operator kijkt ook de de _falsy_ values; 0, '', null, undifinded.
 
-#### ||
+#### Or ||
 
 De _or_ operator (**||**) is het tegenovergestelde van de _and_ operatator. Deze kijkt of de eerste value _true_ is, stopt de loop en stuurt _true_ terug.
 
@@ -169,7 +205,7 @@ spanishTranslation;
 
 De code hierboven is om te kijken of er een spaanse vertaling van het boek is. Wanneer _spanishTranslation_ wordt aangeroepen dan gaat ie kijken of het object een vertaling in het spaans heeft. Als het _true_ is dan wordt de vertaling laten zien, bij _false_ komt er _not translated_ te staan.
 
-#### ??
+#### Or ??
 
 Deze operator werkt eigenlijk hetzelfde als de _or_ operator, maar dan allen bij _null_ en _undefinded_. Dus niet bij 0 of een lege string ''.
 
@@ -217,7 +253,7 @@ Dit kun je blijven doen door middel van meer *.filter*s neer te zetten.
 `const adventureBooks = books.filter((book) => book.genres.includes('adventure'));`
 Wil je sorteren of een eigenschap er in zit. Dan kan dat door middel van de _.includes()_. Hier kun je in aan geven wat de reden moet zijn.
 
-#### The array reduce method
+#### reduce
 
 Met de _reduce_ method kun je de array makkelijk filteren zodat er maar eentje over blijft.
 
@@ -249,7 +285,7 @@ const sum = arr.reduce((accumulator, currentValue) => {
 console.log(sum); // Outputs: 15
 ```
 
-### Explanation:
+#### Explanation:
 
 - `arr.reduce()` accepts a callback function as the first argument. This callback is called on each element of the array.
 - The callback function has two parameters:
@@ -257,7 +293,7 @@ console.log(sum); // Outputs: 15
   2. `currentValue`: This is the current element of the array being processed.
 - The second argument to `reduce()` is the **initial value** of the accumulator (`0` in this case). If not provided, the first element of the array is used as the initial accumulator value.
 
-### Example Breakdown:
+#### Example Breakdown:
 
 - On the first call: `accumulator = 0`, `currentValue = 1` → returns `1`.
 - On the second call: `accumulator = 1`, `currentValue = 2` → returns `3`.
@@ -267,7 +303,7 @@ console.log(sum); // Outputs: 15
 
 So, by the end of the array, the accumulator holds the sum of all the elements.
 
-### Another Example: Building an Object
+#### Another Example: Building an Object
 
 You can also use the accumulator to build more complex data structures, such as objects or even arrays.
 
@@ -288,7 +324,7 @@ Here:
 - The accumulator starts as an empty object `{}`.
 - For each fruit in the array, we add a key-value pair to the accumulator, where the key is the fruit name and the value is the length of the fruit name.
 
-### Key Points:
+#### Key Points:
 
 - The **accumulator** stores the result that is built up over time as `reduce()` iterates through the array.
 - It can be used for many purposes: summing numbers, concatenating strings, building objects, etc.
@@ -298,7 +334,7 @@ If you have a specific example you're struggling with or want further clarificat
 
 </details>
 
-#### The array sort method
+### The array sort method
 
 Het sorteren van een array ook handig zijn. Daar helpt de _.sort_ methode mee.
 
