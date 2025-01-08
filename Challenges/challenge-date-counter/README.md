@@ -1,70 +1,173 @@
-# Getting Started with Create React App
+# date counter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In deze challenge maak ik een date counter doormiddel van useState().
 
-## Available Scripts
+`UseState()` wordt gebruikt om variabelen aan te passen die op een andere manier niet aangepast mogen worden.
 
-In the project directory, you can run:
+## Versie 1
 
-### `npm start`
+![date-counter-v1](./README-files/date-counter-v1.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Versie 1 heeft de eerste manier op de date counter aan te passen. Deze versie is opgebouwd uit twee counters. Een step counter die bepaald hoe groot de stap is die per keer wordt gemaakt en de counter zelf. Deze gaan door middel van de stap het aantal veranderen.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Om te beginnen heb je natuurlijk `useState()` nodig.
 
-### `npm test`
+```js
+function Counter() {
+const [count, setCount] = useState(0);
+const [step, setStep] = useState(1);
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+En dan nog functions die de states kunnen aanpassen.
 
-### `npm run build`
+```js
+function handleNextStep() {
+  setStep((s) => s + 1);
+}
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+function handlePreviousStep() {
+  setStep((s) => s - 1);
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+function handleNextCount() {
+  setCount((s) => s + step);
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+function handlePreviousCount() {
+  setCount((s) => s - step);
+}
+```
 
-### `npm run eject`
+De app ziet er als volgt uit:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+return (
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  <div className="App">
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Een return fuctie die jsx terug geeft en een hoofd div.
 
-## Learn More
+```js
+<p>
+  <span>
+    {count === 0
+      ? "Today is "
+      : count > 0
+      ? `${count} days from today is `
+      : `${Math.abscount} days ago was `}
+  </span>
+  <span>{date.toDateString()}</span>
+</p>
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Een div die de ingegeven datum weergeeft.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+<div>
+  <button onClick={handlePreviousStep}>-</button>
+  <span>Step: {step}</span>
+  <button onClick={handleNextStep}>+</button>
+</div>
+```
 
-### Code Splitting
+Een set buttons waar je de step mee kunt aangeven.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```js
+    <div>
+      <button onClick={handlePreviousCount}>-</button>
+      <span>Count: {count}</span>
+      <button onClick={handleNextCount}>+</button>
+    </div>
 
-### Analyzing the Bundle Size
+  </div>
+);
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Nog een set buttons die door middel van de step het aantal kunnen aanpassen.
 
-### Making a Progressive Web App
+## Versie 2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![date-counter-v1](./README-files/date-counter-v2.png)
 
-### Advanced Configuration
+Met versie twee was het de bedoeling hetzelfde te doen maar dan met een slider.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+De app is weer opgebouwd uit verschillende stukken:
 
-### Deployment
+```js
+function NewCounter() {
+  const [count, setCount] = useState(0);
+  const [step, setStep] = useState();
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Het maken van de functie met dezelfde `useState()`.
 
-### `npm run build` fails to minify
+```js
+const date = new Date("june 21 2027");
+date.setDate(date.getDate() + count);
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Het program een datum laten pakken in een variable zetten.
+
+```js
+function handleNextCount() {
+  setCount((s) => s + step);
+}
+
+function handlePreviousCount() {
+  setCount((s) => s - step);
+}
+
+function handleReset() {
+  setCount(0);
+  setStep(1);
+}
+```
+
+Een extra functie toevoegen om de teller te resetten.
+
+```js
+return (
+<div className="App">
+<div>
+<input
+type="range"
+min="0"
+max="10"
+value={step}
+onChange={(e) => setStep(Number(e.target.value))}
+/>
+<span>Step: {step}</span>
+</div>
+
+      <button onClick={handlePreviousCount}>-</button>
+      <input
+        type="text"
+        value={count}
+        onChange={(e) => setCount(Number(e.target.value))}
+      />
+      <button onClick={handleNextCount}>+</button>
+
+      <p>
+        <span>
+          {count === 0
+            ? "Today is "
+            : count > 0
+            ? `${count} days from today is `
+            : `${Math.abscount} days ago was `}
+        </span>
+        <span>{date.toDateString()}</span>
+      </p>
+
+      {count !== 0 || step !== 1 ? (
+        <div>
+          <button onClick={handleReset}>Reset</button>
+        </div>
+      ) : null}
+    </div>
+    );
+}
+```
+
+De jsx hierboven heeft een slider en input veld waar je dezelfde values kunt aanpassen als bij v1. Het doel van v2 is dat je op verschillende manieren hetzelfde kunt bereiken met `useState()`.
