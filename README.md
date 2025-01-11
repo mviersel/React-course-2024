@@ -1,6 +1,6 @@
 <br></br>
 
-<span style="color: #00d8fe">React</span> *Reacts* to state changes by re-rendering the ui
+<span style="color: #00d8fe">React</span> _Reacts_ to state changes by re-rendering the ui
 
 # Udemy - Master modern React
 
@@ -37,11 +37,52 @@ Index:
    1. Versie 1
    2. Versie 2 (Met kennis van de sectie)
 
-
-
-
-
-
 #### Emoji tip
 
 `win + .` opent emoji menu op windows.
+
+# Section 7 "thinking in react"
+
+Thinking proces:
+
+1. Break ui into components
+2. Build static version in React (without state)
+3. State menagement
+   1. Think about state:
+   - When to use state
+   - Types of state: local vs. global
+   - Where to place piece of state
+   2. Establish data flow
+   - One way data flow
+   - Child to parent communication
+   - Accessing global state
+
+## Local vs global state
+
+| Local state                                                      | Global state (shared state)          |
+| ---------------------------------------------------------------- | ------------------------------------ |
+| Can only be viewed by one or few components                      | Can be viewed by many components     |
+| Only that component and child component can acces it (via props) | State is shared with many components |
+| Always start with local state                                    | Only when really needed              |
+
+## When and where?
+
+The way of thinking can make it clear if you need to use state or a normal veriable.
+
+1. You need to store data
+2. Think to yourself: will this data change at some point?
+
+   1. No, then use a regular variable
+      Need to store data => Will data change at some point? => No, then use regular veriable
+   2. Yes, can be computed from existing state/props?
+      1. Yes, [Derive state]()
+      2. No, should it re-render component?
+         1. No, use [Ref]()
+         2. Yes, place a new piece of state in component
+
+3. Is state veriable only used by this component?
+   1. Yes, leave it in that component
+   2. no, it is only used by the child component?
+      1. Yes, pass to child component via props
+      2. No, lift state up to first common parent component (also called "lifting state up")
+      3. No, use [global state]()
