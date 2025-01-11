@@ -23,9 +23,9 @@ Index:
     - [Or ??](#or--1)
   - [Optional chaining](#optional-chaining)
   - [The array map methods](#the-array-map-methods)
-    - [map](#map)
-    - [filter](#filter)
-    - [reduce](#reduce)
+    - [Map](#map)
+    - [Filter](#filter)
+    - [Reduce](#reduce)
     - [What is an Accumulator?](#what-is-an-accumulator)
     - [Using an Accumulator with `reduce()`](#using-an-accumulator-with-reduce)
       - [Explanation:](#explanation)
@@ -213,7 +213,7 @@ Bij optional chaining vraag je aan javascript om alleen te kijken naar de value 
 
 Hiermee pak je originele array en past deze aan. Je kunt de originel array dus heel laten en een vervanging maken.
 
-### map
+### Map
 
 Met de .map funtion kun je een bestaande array pakken en die items in een nieuwe array zetten.
 `const x = [1, 2, 3, 4, 5].map((el) => el * 2);`
@@ -230,7 +230,7 @@ const essentialData = books.map((book) => ({
 
 Je kunt het natuurlijk ook doen met meerdere attributen. Dat ziet er dan zo uit. En in plaats van het gebruiken van een return, plaats je extra () om hetgenen wat je wil returnen.
 
-### filter
+### Filter
 
 Met deze funtie kun je een array filteren op basis van eigenschappen.
 
@@ -248,7 +248,7 @@ Dit kun je blijven doen door middel van meer *.filter*s neer te zetten.
 `const adventureBooks = books.filter((book) => book.genres.includes('adventure'));`
 Wil je sorteren of een eigenschap er in zit. Dan kan dat door middel van de _.includes()_. Hier kun je in aan geven wat de reden moet zijn.
 
-### reduce
+### Reduce
 
 Met de _reduce_ method kun je de array makkelijk filteren zodat er maar eentje over blijft.
 
