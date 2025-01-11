@@ -7,56 +7,51 @@ In deze repo komt alles wat ik gemaakt heb tijdens deze [udemy cursus](https://w
 Index:
 
 - [Udemy - Masster modern React from beginning](#udemy---masster-modern-react-from-beginning)
-  - [01-pure-react](#01-pure-react)
-  - [02-js-review](#02-js-review)
-    - [Javascript deconstructing](#javascript-deconstructing)
-    - [Desctructuring met array's](#desctructuring-met-arrays)
+- [01-pure-react](#01-pure-react)
+- [02-js-review](#02-js-review)
+  - [Javascript deconstructing](#javascript-deconstructing)
+  - [Desctructuring met array's](#desctructuring-met-arrays)
     - [Rest/spread operator](#restspread-operator)
-      - [Rest operator](#rest-operator)
-      - [Spread operator](#spread-operator)
-    - [Template literals](#template-literals)
-    - [Ternaries indstead of if/else statements](#ternaries-indstead-of-ifelse-statements)
-    - [Arrow functions](#arrow-functions)
-    - [Short-circuiting and logical operators: \&\&, ||, ??](#short-circuiting-and-logical-operators---)
-      - [And \&\&](#and-)
-      - [Or ||](#or-)
-      - [Or ??](#or--1)
-    - [Optional chaining](#optional-chaining)
-    - [The array map method](#the-array-map-method)
-      - [map](#map)
-      - [filter](#filter)
-      - [reduce](#reduce)
+    - [Rest operator](#rest-operator)
+    - [Spread operator](#spread-operator)
+  - [Template literals](#template-literals)
+  - [Ternaries indstead of if/else statements](#ternaries-indstead-of-ifelse-statements)
+  - [Arrow functions](#arrow-functions)
+  - [Short-circuiting and logical operators: \&\&, ||, ??](#short-circuiting-and-logical-operators---)
+    - [And \&\&](#and-)
+    - [Or ||](#or-)
+    - [Or ??](#or--1)
+  - [Optional chaining](#optional-chaining)
+  - [The array map methods](#the-array-map-methods)
+    - [map](#map)
+    - [filter](#filter)
+    - [reduce](#reduce)
     - [What is an Accumulator?](#what-is-an-accumulator)
     - [Using an Accumulator with `reduce()`](#using-an-accumulator-with-reduce)
       - [Explanation:](#explanation)
       - [Example Breakdown:](#example-breakdown)
       - [Another Example: Building an Object](#another-example-building-an-object)
       - [Key Points:](#key-points)
-    - [The array sort method](#the-array-sort-method)
-      - [Immutable arrays](#immutable-arrays)
-        - [Add](#add)
-        - [Delete](#delete)
-        - [Update](#update)
-      - [Asynchronous Javascript: promises](#asynchronous-javascript-promises)
-      - [async/await](#asyncawait)
-  - [03-pizza-menu](#03-pizza-menu)
-    - [Rendering](#rendering)
-    - [webserver starten](#webserver-starten)
-    - [Inhoud aanpassen](#inhoud-aanpassen)
-  - [04-fundamentals](#04-fundamentals)
+  - [The array sort method](#the-array-sort-method)
+  - [Immutable arrays](#immutable-arrays)
+    - [Add](#add)
+    - [Delete](#delete)
+    - [Update](#update)
+  - [Asynchronous Javascript: promises](#asynchronous-javascript-promises)
+    - [async/await](#asyncawait)
 
 <details>
 <summary>Extra</summary>
 Als je javascript gaat gebruiken, installeer dan de Quokka plugin. Deze laat meteen zien wat de javascript code doet en of er dus errors zijn. Let op! Je moet deze elke keer herstarten als je het project heb afgesloten.
 </details>
 
-## 01-pure-react
+# 01-pure-react
 
 Je kunt html aanmaken met React door `return React.createElement("header"}`.
 
-## 02-js-review
+# 02-js-review
 
-### Javascript deconstructing
+## Javascript deconstructing
 
 Als je meerdere variabelen wilt gebruiken en ophalen door middel van een functie kun je dat doen met bijv. een const.
 `const {title, author} = book;`
@@ -65,7 +60,7 @@ Hiermee geef je ook meteen aan dat je als je om een book vraagt je de title en d
 
 Het Desctructure gedeelte hiervan is dat je doormiddel van .title de titel van een entity kunt weergeven. Het wordt dan `book.title`. Deze haalt ie dan op uit de database.
 
-### Desctructuring met array's
+## Desctructuring met array's
 
 Als je geen variabelen wilt aanmaken met we wel een array met de informatie van een object dan doe je dat zo. `const [primaryGenre, secundaryGenre] = genres;` Wat je hier meer doet is aangeven dat de eerste twee items uit de catergorie genres van het object in de "variabelen" van de array worden gezet.
 
@@ -73,7 +68,7 @@ Als je geen variabelen wilt aanmaken met we wel een array met de informatie van 
 
 ### Rest/spread operator
 
-#### Rest operator
+### Rest operator
 
 Als je nog meer items in je object hebt staan die minder belangrijk zijn kun die alsnog opslaan door middel van _Rest_. Dat zier er zo uit:
 `const [primaryGenre, secundaryGenre, ...otherGenres] = genres;` Hier maakt je een soort extra array met `...otherGenres`. Als je het print staat er ook dat het een array met 3 values is.
@@ -89,7 +84,7 @@ Als je nog meer items in je object hebt staan die minder belangrijk zijn kun die
 
 <sup>Tip van Jonas: Weet dat je de ...otherGenres alleen achteraan de array kunt gebruiken. Het zou niet logisch zijn als je die in het midden zou zetten.</sup>
 
-#### Spread operator
+### Spread operator
 
 Waar je met de Rest operator de rest vanzelf laat aanvullen doe je het met de spread operator zelf.
 
@@ -107,7 +102,7 @@ Je kunt met Spread operator ook de value van een array item aanpassen. Je pakt w
 - Spread: Wil je extra items toevoegen of values veranderen doe je met spread. je vult een nieuwe of al bestaande variabele in en geeft deze vervolgends een value mee. 
 </details>
 
-### Template literals
+## Template literals
 
 ```javascript
 const summary = `${title} a book`;
@@ -121,7 +116,7 @@ Een zin waar een deel van veranderd kan worden schrijf je met backticks en varia
 
 </details>
 
-### Ternaries indstead of if/else statements
+## Ternaries indstead of if/else statements
 
 Ternaries ipv if/else statement is gewoon een verkorting van de if/else statement.
 
@@ -141,7 +136,7 @@ const summary = `${title}, is a book with ${pages} and written by ${author}. Pub
 
 De hasMovieAdaptation kan er voor zorgen dat er _not_ in de zin komt staan wanneer er geen verfilming van het boek is.
 
-### Arrow functions
+## Arrow functions
 
 De nieuwe en snellere manier van het schrijven van en funties is met een arrow functie.
 
@@ -170,9 +165,9 @@ const getYear = (str) => {
 };
 ```
 
-### Short-circuiting and logical operators: &&, ||, ??
+## Short-circuiting and logical operators: &&, ||, ??
 
-#### And &&
+### And &&
 
 De _and_ (**&&**) operator kijkt naar de eerste value. Als deze _true_ is dan gaat er pas gekeken worden naar de tweede value. Als de eerste value false is, dan stop ie meteen en is de value _false_.
 
@@ -187,7 +182,7 @@ console.log(0 && 'some string');         fasle
 
 Deze operator kijkt ook de de _falsy_ values; 0, '', null, undifinded.
 
-#### Or ||
+### Or ||
 
 De _or_ operator (**||**) is het tegenovergestelde van de _and_ operatator. Deze kijkt of de eerste value _true_ is, stopt de loop en stuurt _true_ terug.
 
@@ -205,20 +200,20 @@ spanishTranslation;
 
 De code hierboven is om te kijken of er een spaanse vertaling van het boek is. Wanneer _spanishTranslation_ wordt aangeroepen dan gaat ie kijken of het object een vertaling in het spaans heeft. Als het _true_ is dan wordt de vertaling laten zien, bij _false_ komt er _not translated_ te staan.
 
-#### Or ??
+### Or ??
 
 Deze operator werkt eigenlijk hetzelfde als de _or_ operator, maar dan allen bij _null_ en _undefinded_. Dus niet bij 0 of een lege string ''.
 
-### Optional chaining
+## Optional chaining
 
 Bij optional chaining vraag je aan javascript om alleen te kijken naar de value al het niet _undefined_ is.
 `const librarything = book.reviews.librarything?.reviewsCount;` Het _?_ geeft hier aan dat het om optional chaining gaat.
 
-### The array map method
+## The array map methods
 
 Hiermee pak je originele array en past deze aan. Je kunt de originel array dus heel laten en een vervanging maken.
 
-#### map
+### map
 
 Met de .map funtion kun je een bestaande array pakken en die items in een nieuwe array zetten.
 `const x = [1, 2, 3, 4, 5].map((el) => el * 2);`
@@ -235,7 +230,7 @@ const essentialData = books.map((book) => ({
 
 Je kunt het natuurlijk ook doen met meerdere attributen. Dat ziet er dan zo uit. En in plaats van het gebruiken van een return, plaats je extra () om hetgenen wat je wil returnen.
 
-#### filter
+### filter
 
 Met deze funtie kun je een array filteren op basis van eigenschappen.
 
@@ -253,7 +248,7 @@ Dit kun je blijven doen door middel van meer *.filter*s neer te zetten.
 `const adventureBooks = books.filter((book) => book.genres.includes('adventure'));`
 Wil je sorteren of een eigenschap er in zit. Dan kan dat door middel van de _.includes()_. Hier kun je in aan geven wat de reden moet zijn.
 
-#### reduce
+### reduce
 
 Met de _reduce_ method kun je de array makkelijk filteren zodat er maar eentje over blijft.
 
@@ -334,7 +329,7 @@ If you have a specific example you're struggling with or want further clarificat
 
 </details>
 
-### The array sort method
+## The array sort method
 
 Het sorteren van een array ook handig zijn. Daar helpt de _.sort_ methode mee.
 
@@ -357,11 +352,11 @@ sorted;     //[ 1, 3, 6, 7, 9 ]
 numbers:    //[ 3, 7, 6, 7, 9 ]
 ```
 
-#### Immutable arrays
+## Immutable arrays
 
 In javascript is het heel belangrijk dat je niet gaat rommelen met bestaande arrays. Daarom moet je weten hoe je items toevoegd, verwijderd en update.
 
-##### Add
+### Add
 
 ```javascript
 const newBook = {
@@ -372,13 +367,13 @@ const newBook = {
 const booksAfterAdd = [...books, newBook];
 ```
 
-##### Delete
+### Delete
 
 ```javascript
 const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
 ```
 
-##### Update
+### Update
 
 ```javascript
 const booksAfterUpdate = booksAfterDelete.map((book) =>
@@ -386,7 +381,7 @@ const booksAfterUpdate = booksAfterDelete.map((book) =>
 );
 ```
 
-#### Asynchronous Javascript: promises
+## Asynchronous Javascript: promises
 
 Met promises maak je eigenlijk een belofte, duhhh. Dit is handig om te gebruiken met bijvoorbeeld een API.
 
@@ -398,7 +393,7 @@ fetch("https://jsonplaceholder.typicode.com/todos")
 
 Dit is een voorbeeld van een promise method. Javascript voert deze code ook pas later uit dan de Javascript die in het bestand zelf staan. Om de simpele reden dat het ophalen van een API tijd kost. Meer tijd dan simpele Javascript uitvoeren die al in het bestand staat.
 
-#### async/await
+### async/await
 
 Het handige van _async/await_ is dat Javascript niet verder gaat met de rest van de code voordat de promise klaar is.
 
@@ -414,31 +409,3 @@ De betere versie ziet er dan op deze manier uit. De _async_ geeft aan.
 De _res = await fetch("")_ geeft aan dat de variabele _res_ straks de values van de _fetch("")_ opslaat.
 Daarna stop je de _res (response)_ in _data_ in de vorm van een _.json()_ bestand.
 Als laatste wordt het resultaat laten zien in de console door de variabele _data_ te loggen.
-
-## 03-pizza-menu
-
-Dit project is gemaakt met React 5 `npx create-react-app@5` zodat de video goed te volgen is.
-
-<details>
-<summary>web-vitals Error</summary>
-Als je de web-vitals error krijgt is er iets fout gegaan met de installatie. Open de terminal van je project en voer dit in:
-
-`npm i web-vitals --save-dev`
-
-</details>
-
-### Rendering
-
-In de _public/index.html_ staat `<div id="root"></div>`. Dit is om te zorgen dat de html elementen die gemaakt worden met javascript op de goede plaats in de .html komen te staan.
-
-Als je dan in de _src/index.js_ kijkt zie je `const root = ReactDOM.createRoot(document.getElementById('root'));` staan. Dit is de javascrip code die ervoor zorgt dat het naar de juiste plek wordt gestuurd.
-
-### webserver starten
-
-Open de terminal en type: `npm run start`
-
-### Inhoud aanpassen
-
-Op de _src/App.js_. Hier kun je de standaard items weghalen je nieuwe inhoud plaatsen.
-
-## 04-fundamentals
