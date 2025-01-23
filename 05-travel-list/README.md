@@ -85,3 +85,17 @@ function Button(upvotes, bgColor) {
 ```
 
 `Props` worden gebruikt door de parent component om de child component aan te passen. Het zijn dus een soort "settings" die de parent component kan aanpassen.  
+
+# Derived state
+
+Derived state is een state die wordt gemaakt door een andere state of props.
+
+![voorbeeld afbeelding hoe derived state niet moet](./README_files/voorbeeld.png)
+
+Deze afbeelding geeft goed weer hoe het niet moet. Hier staan die "states": `cart, setCart` `numItems, setNumbItems` `totalPrice, setTotalPrice`. Het probleem hiervan is dat je extra states aanmaakt terwijl dezelfde informatie uit een al bestaande state gehaald kan worden.
+
+`numItems` is het aantal items in `cart`.
+
+`totalPrice` is namelijk de totale prijs van alle producten in `cart`.
+
+Dit is dus dubbele informatie.
