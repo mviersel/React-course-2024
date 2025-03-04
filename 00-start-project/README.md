@@ -3,7 +3,7 @@
 ## Dit project is gemaakt in - stappen:
 
 React project aanmaken. Hier wordt versie 5 gebruiken, omdat dat met de cursus wordt gebruikt.
-`npx create-react-app@5 .`
+`npx create-react-app@5 .` / `npx create-react-app@5.1`
 
 Om te zorgen dat er geen error komt voor de webvitals is ook deze command nog gebruikt:
 `npm i web-vitals --save-dev`
