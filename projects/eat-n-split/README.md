@@ -95,8 +95,8 @@ function handleSubmit(e) {
 }
 ```
 
-De _form_ komt binnen als *`e`*. 
+De _form_ komt binnen als _`e`_.
 
 `e.preventDefault();` is om te zorgen dat de pagina niet refreshed als je de form inleverd. Dat zou standaard moeten gebeuren, maar dat zet je hiermee dus "uit".
 
-Alle informatie uit *`e`* wordt in `newFriend` toegepast in de gedefinieerde properties. 
+Alle informatie uit _`e`_ wordt in `newFriend` toegepast in de gedefinieerde properties. De `id` wordt random gegenereed door door de `randomUUID` functie. `name` heb je zelf ingevuld. `image` pakt de url die ingevuld is vult deze vervolgends aan met de `id` om een unieke afbeelding te krijgen. `balance` wordt op de achtergrond op 0 gezet, omdat je aan het begin natuurlijk gelijk staat met elkaar.
