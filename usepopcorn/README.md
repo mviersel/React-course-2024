@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Use pop corn
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A movie tracker
 
-## Available Scripts
+# Component size **matters**
 
-In the project directory, you can run:
+Bij het maken van compenten is het belangrijk dat het te groot en niet te klein is. Wanneer een component te veel taken heeft wordt het onoverzichtelijk. Dat component heeft teveel verantwoordelijkheden.
 
-### `npm start`
+Alle manieren om te zien of een component te groot is:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Teveel verantwoordelijkheden (responsibilities)
+- Teveel variabelen mee krijgen (props)
+- Moeilijk te (her)gebruiken
+- Complexe/teveel code, en dus moeilijk te begrijpen
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Alle manieren om te zien of een component te klein is:
 
-### `npm test`
+- Wanneer er teveel componenten zijn, en dus teveel bestanden
+- Component verbergt teveel wat het doet. Een knop waarvan je niet meer kunt zien wat de code doet.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Het is dus belangrijk om te zoeken naar de juiste balans. Hieronder staat een voorbeeld van hoe je het kunt aanpakken.
 
-### `npm run build`
+![Voorbeeld van hoe componenten opslitsen](./readme-images/image.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+De 4 kritea voor het splitten van een component zijn:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Logica in verdeling van de layout
+   - Hebben de layouts met elkaar te maken?
+2. Herbruikbaarheid
+   - Is het mogelijk om het vaker te gebruiken?
+3. Verantwoordelijkheid en nivea van complexiteit
+   - Is het afhankelijk van teveel andere?
+   - Heeft het teveel props?
+   - Heeft het teveel UseStates?
+   - Is het te ingewikkeld qua JSX?
+4. persoonlijke coding style
+   - Voelt het fijn om op deze manier te werken?
+   - Kun je code gemakkelijk terug vinden?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Component categories
 
-### `npm run eject`
+| State*less*               | State*full*    | Structural                   |
+| ------------------------- | -------------- | ---------------------------- |
+| No state                  | Have state     | Pages, layouts, screens      |
+| Can receive props or data | Still reusable | Results of compositions      |
+| Small and reusable        |                | Can be huge and non-reusable |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Prop drilling
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Wanneer je een prop op meerder plekken nodig hebt in je app kan er `prop drilling` onstaan. Dit is het doorgeven van props terwijl andere components die informatie helemaal niet nodig hebben.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Oplossing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Een manier om dit te voorkomen heet component composition. Hier maak je gebruikt van een lege component die je met een andere component vult. Het voordeel hiervan is dat je de state niet door verschillende lagen heen hoeft te "drillen". Je kunt de prop meegeven aan een andere component die je als invulling toepast.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Verschillen tussen prop drilling en component composition](./readme-images/propDrilling.png)
